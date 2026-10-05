@@ -1,23 +1,23 @@
 package com.example;
 import  java.util.Scanner;
-//Exercício 2: Busca de Caracteres em um Vetor
+
+//Exercício 3: Contagem de Valores Booleanos
+
 public class Main {
     public static void main(String[] args) {
 
         Scanner entrada = new Scanner(System.in);
 
-        char[] meuNome = {'J', 'U', 'L', 'I', 'A'};
+        boolean[] byteUsuario = new boolean[8];
+        int contadorTrue = 0;
 
-        System.out.println("Informe a letra que deseja buscar: ");
-
-        char letraUsuario = entrada.next().charAt(0);
-
-        for(int i = 0; i< meuNome.length; i++){
-            if(meuNome[i] == letraUsuario ){
-                System.out.println("Achada a letra " + letraUsuario + " na posição " + i);
-            }
-
+        for(int i =0; i < byteUsuario.length; i++){
+            System.out.println("Informe true ou false para o bit[ " + i + " ]");
+            byteUsuario[i] = entrada.hasNextBoolean();
+            if(byteUsuario[i] == true) contadorTrue++;
         }
+
+        System.out.println("Quant. de true no byte : " + contadorTrue);
 
     }
 }
