@@ -1,24 +1,23 @@
 package com.example;
-
-//Exercício 1: Soma de Elementos Inteiros em um Vetor
+import  java.util.Scanner;
+//Exercício 2: Busca de Caracteres em um Vetor
 public class Main {
     public static void main(String[] args) {
 
-        int [] valores = {4,8, 10 ,2, 4, 2};
-        int soma= 0;
+        Scanner entrada = new Scanner(System.in);
 
-        System.out.println("A soma de ");
+        char[] meuNome = {'J', 'U', 'L', 'I', 'A'};
 
-        for(int i = 0; i < valores.length; i++ ){
-            soma += valores[i]; //soma = soma + valores[i];
-            System.out.print(valores[i]);
-            if(i == 5) break;
-            System.out.print(" + ");
+        System.out.println("Informe a letra que deseja buscar: ");
+
+        char letraUsuario = entrada.next().charAt(0);
+
+        for(int i = 0; i< meuNome.length; i++){
+            if(meuNome[i] == letraUsuario ){
+                System.out.println("Achada a letra " + letraUsuario + " na posição " + i);
+            }
+
         }
-
-
-        System.out.println(" = " + soma);
-
 
     }
 }
