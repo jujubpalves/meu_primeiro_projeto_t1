@@ -26,8 +26,8 @@ public class Main {
                 System.out.println("Erro ao manipular o arquivo! ");
             }
         }
-        FileWriter escritor = new FileWriter("teste.txt");
-        escritor.write("Olá, Julia!");
+        FileWriter escritor = new FileWriter("teste.txt", true );
+        escritor.write("Olá, Beatriz!" );
         escritor.close();
 
     }
