@@ -10,15 +10,19 @@ public class Main {
 
         Scanner entrada = new Scanner(System.in);
 
-        File arquivo = new File ("exemplo.txt");
+        File arquivo = new File("exemplo.txt");
 
         if (arquivo.exists()) {
             System.out.println("O arquivo já existe. ");
         } else {
-            if (arquivo.createNewFile()) {
-                System.out.println("Arquivo criado com sucesso: " + arquivo.getName());
-            } else {
-                System.out.println("Falha ao criar arquivo. ");
+            try {
+                if (arquivo.createNewFile()) {
+                    System.out.println("Arquivo criado com sucesso: " + arquivo.getName());
+                } else {
+                    System.out.println("Falha ao criar arquivo. ");
+                }
+            } catch (IOException e) {
+                System.out.println("Erro ao manipular o arquivo! ");
             }
         }
     }
