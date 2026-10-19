@@ -1,4 +1,5 @@
 package com.example;
+import java.io.FileWriter;
 import java.io.IOException;
 import  java.util.Scanner;
 import java.io.File;
@@ -25,5 +26,9 @@ public class Main {
                 System.out.println("Erro ao manipular o arquivo! ");
             }
         }
+        FileWriter escritor = new FileWriter("teste.txt");
+        escritor.write("Olá, Julia!");
+        escritor.close();
+
     }
 }
