@@ -1,34 +1,42 @@
-package com.example;
-import java.io.FileWriter;
-import java.io.IOException;
-import  java.util.Scanner;
-import java.io.File;
+import java.io.*;
+import java.util.Scanner;
 
-//Exercício 3: Contagem de Valores Booleanos
-
+//Escrita de Arquivos em JAVA
+//Desafio 1 - Adicionar coluna Status
 public class Main {
     public static void main(String[] args) throws IOException {
+        try {
+            BufferedReader leitor = new BufferedReader(new FileReader("/C://Users//56576890893//Downloads//ativos.csv/"));
+            BufferedWriter escritor = new BufferedWriter(new FileWriter("inventario_atualizado.csv"));
 
-        Scanner entrada = new Scanner(System.in);
+            String linha = leitor.readLine();
+            escritor.write(linha + ", status");
+            escritor.newLine();
 
-        File arquivo = new File("exemplo.txt");
+            while ((linha = leitor.readLine()) != null) {
+                String[] dados = linha.split(",");
+                String host = dados[0];
+                String ip = dados[1];
+                String so = dados[2];
 
-        if (arquivo.exists()) {
-            System.out.println("O arquivo já existe. ");
-        } else {
-            try {
-                if (arquivo.createNewFile()) {
-                    System.out.println("Arquivo criado com sucesso: " + arquivo.getName());
+                String status;
+                if (so.toLowerCase().contains("windows")) {
+                    status = "Online";
+                } else if (so.toLowerCase().contains("linux") || so.contains("Ubuntu") || so.contains("Debian") || so.contains("Rocky") || so.contains("Kali")) { //[cite: 15, 19]
+                    status = "Em Monitoramento";
                 } else {
-                    System.out.println("Falha ao criar arquivo. ");
+                    status = "Desconhecido";
                 }
-            } catch (IOException e) {
-                System.out.println("Erro ao manipular o arquivo! ");
-            }
-        }
-        FileWriter escritor = new FileWriter("teste.txt", true );
-        escritor.write("Olá, Beatriz!" );
-        escritor.close();
 
+                escritor.write(host + "," + ip + "," + so + "," + status);
+                escritor.newLine();
+            }
+
+            leitor.close();
+            escritor.close();
+            System.out.println("Relatorio gerado com sucesso!");
+        } catch (IOException e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
     }
 }
