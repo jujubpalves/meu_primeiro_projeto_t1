@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.Scanner;
 
 //Escrita de Arquivos em JAVA
-//Desafio 3 - Gera apenas hosts críticos
+//Desafio 3 - Gera apenaas hosts críticos
 public class Main {
     public static void main(String[] args) throws IOException {
         try {
