@@ -1,17 +1,21 @@
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 //Escrita de Arquivos em JAVA
-//Desafio 3 - Gera apenaas hosts críticos
+//Desafio 4 - Adicionar data da auditoria
 public class Main {
     public static void main(String[] args) throws IOException {
+        String dataAtual = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
         try {
-            BufferedReader leitor = new BufferedReader(new FileReader("//C://Users//Downloads//ativos.csv/"));
-            BufferedWriter escritorCriticos = new BufferedWriter(new FileWriter("hosts_criticos.csv"));
+            BufferedReader leitor = new BufferedReader(new FileReader("/C://Users//Downloads//ativos.csv/"));
+            BufferedWriter escritor = new BufferedWriter(new FileWriter("inventario_auditado.csv"));
 
             String linha = leitor.readLine();
-            escritorCriticos.write(linha + ", criticidade");
-            escritorCriticos.newLine();
+            escritor.write(linha + ", data_auditoria");
+            escritor.newLine();
 
             while ((linha = leitor.readLine()) != null) {
                 String[] dados = linha.split(",");
@@ -19,25 +23,14 @@ public class Main {
                 String ip = dados[1];
                 String so = dados[2];
 
-                String criticidade;
-                if (so.contains("Kali")) {
-                    criticidade = "Alta";
-                } else if (so.contains("Ubuntu") || so.contains("Debian") || so.contains("Rocky")) {
-                    criticidade = "Baixa";
-                } else {
-                    criticidade = "Media";
-                }
-
-                if ("Alta".equals(criticidade)) {
-                    escritorCriticos.write(host + "," + ip + "," + so + "," + criticidade);
-                    escritorCriticos.newLine();
-                }
+                escritor.write(host + "," + ip + "," + so + "," + dataAtual);
+                escritor.newLine();
             }
 
             leitor.close();
-            escritorCriticos.close();
+            escritor.close();
 
-            System.out.println("Arquivo de hosts críticos gerado com sucesso!");
+            System.out.println("Relatório com data de auditoria gerado com sucesso!");
 
         } catch (IOException e) {
             System.out.println("Erro: " + e.getMessage());
